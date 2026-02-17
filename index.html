@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carbon Monitoring Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <h1 class="title">Carbon Impact Monitoring System</h1>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>Carbon Monoxide (CO)</h2>
+            <p id="co">-- ppm</p>
+        </div>
+
+        <div class="card">
+            <h2>Air Quality</h2>
+            <p id="air">--</p>
+        </div>
+
+        <div class="card">
+            <h2>Temperature</h2>
+            <p id="temp">-- °C</p>
+        </div>
+
+        <div class="card">
+            <h2>Humidity</h2>
+            <p id="hum">-- %</p>
+        </div>
+
+        <div class="card">
+            <h2>Power</h2>
+            <p id="power">-- W</p>
+        </div>
+
+        <div class="card">
+            <h2>Estimated CO₂</h2>
+            <p id="co2">-- kg</p>
+        </div>
+
+    </div>
+    <div id="alert" class="alert-box">
+    ⚠ DANGER: HIGH CO LEVEL ⚠
+</div>
+
+    <div class="graph-container">
+        <canvas id="coChart"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js')
+    .then(() => console.log("Service Worker Registered"));
+}
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(reg => console.log("Service Worker Registered"))
+      .catch(err => console.log("SW registration failed:", err));
+  });
+}
+</script>
+</body>
+</html>
